@@ -1,6 +1,6 @@
 {
-  "name": "zqr-code",
-  "version": "1.0.0",
+  "name": "zqr-code-generator",
+  "version": "1.1.0",
   "description": "React component for generating QR Code that look good on Zalo mini programs",
   "keywords": [
     "React",
@@ -25,16 +25,8 @@
     "generate": "node ./util/create-component",
     "prepublishOnly": "npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HarveyD/react-component-library.git"
-  },
   "author": "nguyenhongphat0",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/HarveyD/react-component-library/issues"
-  },
-  "homepage": "https://github.com/HarveyD/react-component-library#readme",
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"

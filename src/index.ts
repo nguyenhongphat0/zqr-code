@@ -1,3 +1,3 @@
-import TestComponent from "./TestComponent";
+import QRCode from "./QRCode";
 
-export { TestComponent };
+export { QRCode };
