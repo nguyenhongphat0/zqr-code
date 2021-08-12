@@ -1,22 +1,22 @@
-# Zalo QR Code Generator
+# ZMP QR Code
 
-React component for generating QR Code that look good on Zalo mini programs.
+React component for generating QR Code that match Zalo Miniapps looks and feels.
 
 ## Installation
 
 
 ```bash
-npm i zqr-code-generator
+npm i zmp-qrcode
 ```
 
 ## Usage
 
 ```jsx
 import React from 'react'
-import { QRCode } from 'zqr-code-generator'
+import { QRCode } from 'zmp-qrcode'
 
 const ScanMe = () => {
-  const value = 'https://www.npmjs.com/package/zqr-code-generator'
+  const value = 'https://www.npmjs.com/package/zmp-qrcode'
   const image = 'https://stc-zaloprofile.zdn.vn/pc/v1/images/logo.svg'
 
   return <QRCode rounded value={value} image={image} />
@@ -32,7 +32,7 @@ const ScanMe = () => {
 |Name|Description|Default|
 |--- |--- |--- |
 |value*|string|-|
-|image*|string|-|
+|image|string|-|
 |rounded|boolean|false|
 |size|number \| "auto"|auto|
 |type|"canvas" \| "svg"|-|
