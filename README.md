@@ -23,7 +23,7 @@ const ScanMe = () => {
 }
 ```
 
-![Preview](./preview.png)
+![Preview](https://raw.githubusercontent.com/nguyenhongphat0/zqr-code/main/preview.png)
 
 ## API Documentation
 
