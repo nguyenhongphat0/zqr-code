@@ -68,6 +68,6 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "easyqrcodejs": "^4.4.3"
+    "qr-code-styling": "^1.6.0-rc.1"
   }
 }

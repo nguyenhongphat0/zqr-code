@@ -1,11 +1,14 @@
 import React from "react";
 import QRCode from "./QRCode";
+import zaloLogo from '../../static/zalo.png';
 
 export default {
   title: "QRCode",
   component: QRCode,
   args: {
-    value: 'https://miniapp.zalo.me',
+    value: 'https://zalo.me/4318657068771012646',
+    image: zaloLogo,
+    size: 256
   },
 };
 
@@ -17,4 +20,5 @@ Default.args = {
 
 export const Rounded = Template.bind({});
 Rounded.args = {
+  rounded: true
 };
