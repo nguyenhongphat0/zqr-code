@@ -20,16 +20,13 @@ Default.args = {
 
 export const Rounded = Template.bind({});
 Rounded.args = {
-  rounded: true,
-  onChange: base64 => {
-    console.log('alo', base64)
-  }
+  rounded: true
 };
 
 export const Base64 = (args) => {
   const [src, setSrc] = useState('');
   return <div>
     <img src={src} alt="" />
-    <QRCode {...args} onChange={base64 => setSrc(base64)} />
+    <QRCode {...args} rounded onChange={base64 => setSrc(base64)} />
   </div>
 }

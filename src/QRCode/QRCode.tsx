@@ -11,16 +11,14 @@ const QRCode: React.FC<QRCodeProps> = ({ value, rounded, image, onChange, size =
     qrCode.current.append(ref.current)
   }, [])
 
+  const getBase64 = () => {
+    return qrCode.current._canvas.toDataURL();
+  }
+
   useEffect(() => {
     // Create new QRCode Object
     const width = size === 'auto' ? ref.current.getBoundingClientRect().width : size
     const height = width
-
-    const getBase64 = () => {
-      const data = new XMLSerializer().serializeToString(qrCode.current._svg)
-      const base64 = window.btoa(data);
-      return `data:image/svg+xml;base64,${base64}`;
-    }
 
     qrCode.current.update({
       data: value,
@@ -47,7 +45,14 @@ const QRCode: React.FC<QRCodeProps> = ({ value, rounded, image, onChange, size =
     })
 
     if (onChange) {
-      onChange(getBase64(), qrCode.current._svg);
+      qrCode.current.getRawData("png").then(blob => {
+        var reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = function () {
+          var base64 = reader.result;
+          onChange(base64.toString(), qrCode.current._svg);
+        }
+      })
     }
   }, [value, rounded, size, image, restProps])
 
