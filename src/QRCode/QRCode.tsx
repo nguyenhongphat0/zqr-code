@@ -1,14 +1,17 @@
-import React, { useEffect, useRef } from "react";
-import { QRCodeProps } from "./QRCodeProps.types";
+import React, { MutableRefObject, useEffect, useRef } from "react";
+import { QRCodeInstance, QRCodeProps } from "./QRCodeProps.types";
 import QRCodeStyling from 'qr-code-styling'
 import "./QRCodeProps.scss";
 
-const QRCode: React.FC<QRCodeProps> = ({ value, rounded, image, onChange, size = 'auto', ...restProps }) => {
-  const ref = useRef<HTMLDivElement>()
+const QRCode: React.FC<QRCodeProps> = React.forwardRef(({ value, rounded, image, onChange, size = 'auto', ...restProps }, ref: MutableRefObject<QRCodeInstance>) => {
+  const el = useRef<HTMLDivElement>()
   const qrCode = useRef(new QRCodeStyling())
+  if (ref) {
+    ref.current = qrCode.current
+  }
 
   useEffect(() => {
-    qrCode.current.append(ref.current)
+    qrCode.current.append(el.current)
   }, [])
 
   const getBase64 = () => {
@@ -17,7 +20,7 @@ const QRCode: React.FC<QRCodeProps> = ({ value, rounded, image, onChange, size =
 
   useEffect(() => {
     // Create new QRCode Object
-    const width = size === 'auto' ? ref.current.getBoundingClientRect().width : size
+    const width = size === 'auto' ? el.current.getBoundingClientRect().width : size
     const height = width
 
     qrCode.current.update({
@@ -56,7 +59,7 @@ const QRCode: React.FC<QRCodeProps> = ({ value, rounded, image, onChange, size =
     }
   }, [value, rounded, size, image, restProps])
 
-  return <div ref={ref} style={{ width: size, height: size }}></div>
-};
+  return <div ref={el} style={{ width: size, height: size }}></div>
+});
 
 export default QRCode;

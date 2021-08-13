@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import QRCode from "./QRCode";
 import zaloLogo from '../../static/zalo.png';
+import { QRCodeInstance } from "./QRCodeProps.types";
 
 export default {
   title: "QRCode",
@@ -29,4 +30,12 @@ export const Base64 = (args) => {
     <img src={src} alt="" />
     <QRCode {...args} rounded onChange={base64 => setSrc(base64)} />
   </div>
+}
+
+export const UseRef = (args) => {
+  const ref = useRef<QRCodeInstance>()
+  return <>
+    <button onClick={() => ref.current.download()}>Download</button>
+    <QRCode {...args} rounded ref={ref} />
+  </>
 }
