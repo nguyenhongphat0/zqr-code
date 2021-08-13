@@ -3,5 +3,6 @@ export interface QRCodeProps extends Options {
   value: string;
   rounded?: boolean;
   image?: string;
-  size: 'auto' | number;
+  size?: 'auto' | number;
+  onChange?: (base64: string, svg: SVGElement) => any
 }

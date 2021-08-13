@@ -35,6 +35,7 @@ const ScanMe = () => {
 |image|string|-|
 |rounded|boolean|false|
 |size|number \| "auto"|auto|
+|onChange|(base64: string, svg: HTMLCanvasElement) => any|-|
 |type|"canvas" \| "svg"|-|
 |shape|"square" \| "circle"|-|
 |width|number|-|
