@@ -37,7 +37,7 @@ const QRCode: React.FC<QRCodeProps> = ({ value, rounded, image, size = 'auto', .
       },
       ...restProps
     })
-  }, [value, size, image, restProps])
+  }, [value, rounded, size, image, restProps])
 
   return <div ref={ref} style={{ width: size, height: size }}></div>
 };
