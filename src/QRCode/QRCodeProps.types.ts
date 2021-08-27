@@ -5,7 +5,6 @@ export interface QRCodeProps extends Options {
   rounded?: boolean;
   image?: string;
   size?: 'auto' | number;
-  onChange?: (base64: string, svg: SVGElement) => any
 }
 
 export interface QRCodeInstance extends QRCodeStyling {

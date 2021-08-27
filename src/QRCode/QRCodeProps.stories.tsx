@@ -13,7 +13,7 @@ export default {
   },
 };
 
-const Template = (args) => <QRCode {...args} />;
+const Template = (args) => [...Array(20)].map((e, i) => <QRCode {...args} />);
 
 export const Default = Template.bind({});
 Default.args = {

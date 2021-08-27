@@ -3,7 +3,7 @@ import { QRCodeInstance, QRCodeProps } from "./QRCodeProps.types";
 import QRCodeStyling from 'qr-code-styling'
 import "./QRCodeProps.scss";
 
-const QRCode: React.FC<QRCodeProps> = React.forwardRef(({ value, rounded, image, onChange, size = 'auto', ...restProps }, ref: MutableRefObject<QRCodeInstance>) => {
+const QRCode: React.FC<QRCodeProps> = React.forwardRef(({ value, rounded, image, size = 'auto', ...restProps }, ref: MutableRefObject<QRCodeInstance>) => {
   const el = useRef<HTMLDivElement>()
   const qrCode = useRef(new QRCodeStyling())
   if (ref) {
@@ -46,17 +46,6 @@ const QRCode: React.FC<QRCodeProps> = React.forwardRef(({ value, rounded, image,
       },
       ...restProps
     })
-
-    if (onChange) {
-      qrCode.current.getRawData("png").then(blob => {
-        var reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = function () {
-          var base64 = reader.result;
-          onChange(base64.toString(), qrCode.current._svg);
-        }
-      })
-    }
   }, [value, rounded, size, image, restProps])
 
   return <div ref={el} style={{ width: size, height: size }}></div>
