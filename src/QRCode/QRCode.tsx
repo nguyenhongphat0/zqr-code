@@ -42,7 +42,7 @@ const QRCode: React.FC<QRCodeProps> = React.forwardRef(({ value, rounded, image,
     setIcon(image)
   }, [image])
 
-  return <div ref={el}>
+  return <div ref={el} style={{ width: size, height: size, overflow: 'hidden' }}>
     <QRNormal
       value={value}
       icon={icon}
@@ -50,7 +50,8 @@ const QRCode: React.FC<QRCodeProps> = React.forwardRef(({ value, rounded, image,
       styles={{
         svg: {
           width: size,
-          height: size
+          height: size,
+          transform: 'scale(1.4)'
         }
       }}
       type={rounded ? 'round' : 'rect'}
