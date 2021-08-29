@@ -1,12 +1,13 @@
-import QRCodeStyling from 'qr-code-styling';
-import { Options } from 'qr-code-styling/lib/types'
-export interface QRCodeProps extends Options {
+import { RendererProps } from 'react-qrbtf';
+
+export interface QRCodeProps extends RendererProps {
   value: string;
   rounded?: boolean;
   image?: string;
-  size?: 'auto' | number;
+  size?: number;
 }
 
-export interface QRCodeInstance extends QRCodeStyling {
-  
+export interface QRCodeInstance {
+  svg: SVGElement,
+  getBase64: () => Promise<string>
 }

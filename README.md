@@ -28,27 +28,32 @@ const ScanMe = () => {
 ## API Documentation
 
 ### QRCode
-
+## Props
 |Name|Description|Default|
 |--- |--- |--- |
 |value*|string|-|
 |image|string|-|
 |rounded|boolean|false|
-|size|number \| "auto"|auto|
-|onChange|(base64: string, svg: HTMLCanvasElement) => any|-|
-|type|"canvas" \| "svg"|-|
-|shape|"square" \| "circle"|-|
-|width|number|-|
-|height|number|-|
-|margin|number|-|
-|data|string|-|
-|qrOptions|{ typeNumber?: TypeNumber; mode?: Mode; errorCorrectionLevel?: ErrorCorrectionLevel; }|-|
-|imageOptions|{ hideBackgroundDots?: boolean; imageSize?: number; crossOrigin?: string; margin?: number; }|-|
-|dotsOptions|{ type?: DotType; color?: string; gradient?: Gradient; }|-|
-|cornersSquareOptions|{ type?: CornerSquareType; color?: string; gradient?: Gradient; }|-|
-|cornersDotOptions|{ type?: CornerDotType; color?: string; gradient?: Gradient; }|-|
-|backgroundOptions|{ round?: number; color?: string; gradient?: Gradient; }|-|
+|size|number|256|
 
+## Ref
+You can export a static image from QRCode using ref. Here is an example:
+
+```jsx
+const ExportImage = () => {
+  const [src, setSrc] = useState('');
+
+  const ref = useRef<QRCodeInstance>();
+  useEffect(() => {
+    ref.current.getBase64().then(base64 => setSrc(base64))
+  }, []);
+
+  return <div>
+    <img src={src} alt="" />
+    <QRCode ref={ref} rounded value="just another value" />
+  </div>
+}
+```
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

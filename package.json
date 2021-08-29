@@ -1,6 +1,6 @@
 {
   "name": "zmp-qrcode",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "React component for generating QR Code that match Zalo Miniapps looks and feels.",
   "keywords": [
     "React",
@@ -60,6 +60,6 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "qr-code-styling": "^1.6.0-rc.1"
+    "react-qrbtf": "^1.2.1"
   }
 }
