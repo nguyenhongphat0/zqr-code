@@ -1,6 +1,6 @@
 import React, { MutableRefObject, useEffect, useRef, useState } from "react";
 import { QRCodeInstance, QRCodeProps } from "./QRCodeProps.types";
-import { QRNormal } from 'react-qrbtf'
+import QRCustom from "../QRCustom";
 import "./QRCodeProps.scss";
 
 const toDataURL = (url, callback) => {
@@ -60,7 +60,7 @@ const QRCode: React.FC<QRCodeProps> = React.forwardRef(({ value, rounded, image,
   }, [image])
 
   return <div ref={el} style={{ width: size, height: size, overflow: 'hidden' }}>
-    <QRNormal
+    <QRCustom
       value={value}
       icon={icon}
       iconScale={0.25}
@@ -68,7 +68,8 @@ const QRCode: React.FC<QRCodeProps> = React.forwardRef(({ value, rounded, image,
         svg: {
           width: size,
           height: size,
-          transform: 'scale(1.4)'
+          transform: 'scale(1.4)',
+          background: 'white'
         }
       }}
       type={rounded ? 'round' : 'rect'}

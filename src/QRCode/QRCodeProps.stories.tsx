@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import QRCode from "./QRCode";
-import zaloLogo from '../../static/zalo.png';
 import { QRCodeInstance } from "./QRCodeProps.types";
 
 export default {
@@ -8,7 +7,7 @@ export default {
   component: QRCode,
   args: {
     value: 'https://zalo.me/4318657068771012646',
-    image: zaloLogo,
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/800px-Figma-logo.svg.png',
   },
 };
 
@@ -46,7 +45,7 @@ export const ExportImage = () => {
 
   return <div>
     <img src={src} alt="" />
-    <QRCode ref={ref} rounded image={zaloLogo} value="just another value" />
+    <QRCode ref={ref} rounded value="just another value" />
   </div>
 }
 
