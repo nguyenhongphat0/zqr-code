@@ -41,12 +41,12 @@ export const ExportImage = () => {
 
   const ref = useRef<QRCodeInstance>();
   useEffect(() => {
-    ref.current.getBase64().then(base64 => setSrc(base64))
+    ref.current.getBase64('png').then(base64 => setSrc(base64))
   }, []);
 
   return <div>
     <img src={src} alt="" />
-    <QRCode ref={ref} rounded value="just another value" />
+    <QRCode ref={ref} rounded image={zaloLogo} value="just another value" />
   </div>
 }
 

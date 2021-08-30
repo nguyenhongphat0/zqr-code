@@ -9,5 +9,5 @@ export interface QRCodeProps extends RendererProps {
 
 export interface QRCodeInstance {
   svg: SVGElement,
-  getBase64: () => Promise<string>
+  getBase64: (type?: 'svg' | 'png' | 'jpg') => Promise<string>
 }

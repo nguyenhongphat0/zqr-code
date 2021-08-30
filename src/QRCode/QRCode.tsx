@@ -24,14 +24,31 @@ const QRCode: React.FC<QRCodeProps> = React.forwardRef(({ value, rounded, image,
   useEffect(() => {
     if (ref) {
       const svg = el.current.querySelector('svg')
-      const getBase64 = () => new Promise<string>(resolve => {
+      const getBase64 = (type = 'svg') => new Promise<string>(resolve => {
         toDataURL(image, function (dataUrl) {
           if (image) {
             setIcon(dataUrl)
           }
           const s = new XMLSerializer().serializeToString(svg)
           const base64 = window.btoa(s);
-          resolve(`data:image/svg+xml;base64,${base64}`)
+          const svgSrc = `data:image/svg+xml;base64,${base64}`
+          if (type === 'svg') {
+            resolve(svgSrc)
+          } else {
+            const canvas = document.createElement("canvas");
+            canvas.width = size
+            canvas.height = size
+            const ctx = canvas.getContext("2d");
+
+            const img = document.createElement("img");
+            img.setAttribute("src", svgSrc);
+
+            img.onload = function () {
+              ctx.drawImage(img, 0, 0, size, size);
+              const imageSrc = canvas.toDataURL("image/${type}")
+              resolve(imageSrc)
+            };
+          }
         })
       })
       ref.current = { svg, getBase64 }
