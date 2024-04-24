@@ -1,13 +1,9 @@
-import { RendererProps } from 'react-qrbtf';
-
-export interface QRCodeProps extends RendererProps {
+export interface QRCodeProps {
   value: string;
-  rounded?: boolean;
-  image?: string;
   size?: number;
 }
 
 export interface QRCodeInstance {
-  svg: SVGElement,
-  getBase64: (type?: 'svg' | 'png' | 'jpg') => Promise<string>
+  canvas: HTMLCanvasElement,
+  getBase64: (type?: 'png' | 'jpg') => string
 }

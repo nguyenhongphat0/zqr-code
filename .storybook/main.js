@@ -2,8 +2,15 @@ const path = require("path");
 
 module.exports = {
   stories: ["../src/**/*.stories.tsx"],
+
   // Add any Storybook addons you want here: https://storybook.js.org/addons/
-  addons: ['@storybook/addon-controls', '@storybook/addon-docs'],
+  addons: [
+    '@storybook/addon-controls',
+    '@storybook/addon-docs',
+    "@storybook/addon-webpack5-compiler-babel",
+    "@chromatic-com/storybook"
+  ],
+
   webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.scss$/,
@@ -21,5 +28,14 @@ module.exports = {
     config.resolve.extensions.push(".ts", ".tsx");
 
     return config;
+  },
+
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {}
+  },
+
+  docs: {
+    autodocs: true
   }
 };

@@ -1,6 +1,6 @@
 # ZMP QR Code
 
-React component for generating QR Code that match Zalo Miniapps looks and feels.
+React component for generating QR codes that match Zalo Mini App looks and feels.
 
 ## Installation
 
@@ -12,15 +12,9 @@ npm i zmp-qrcode
 ## Usage
 
 ```jsx
-import React from 'react'
 import { QRCode } from 'zmp-qrcode'
 
-const ScanMe = () => {
-  const value = 'https://www.npmjs.com/package/zmp-qrcode'
-  const image = 'https://stc-zaloprofile.zdn.vn/pc/v1/images/logo.svg'
-
-  return <QRCode rounded value={value} image={image} />
-}
+<QRCode value="https://www.npmjs.com/package/zmp-qrcode" />
 ```
 
 ![Preview](https://raw.githubusercontent.com/nguyenhongphat0/zqr-code/main/preview.png)
@@ -32,25 +26,19 @@ const ScanMe = () => {
 |Name|Description|Default|
 |--- |--- |--- |
 |value*|string|-|
-|image|string|-|
-|rounded|boolean|false|
-|size|number|256|
+|size|number|128|
 
 ## Ref
-You can export a static image from QRCode using ref. Here is an example:
+You can export the QR code as a base64 image using ref. Here is an example:
 
 ```jsx
-const ExportImage = () => {
+export const Base64 = (args) => {
+  const ref = useRef<QRCodeInstance>()
   const [src, setSrc] = useState('');
 
-  const ref = useRef<QRCodeInstance>();
-  useEffect(() => {
-    ref.current.getBase64().then(base64 => setSrc(base64))
-  }, []);
-
   return <div>
+    <QRCode ref={el => el ? setTimeout(() => setSrc(el.getBase64()), 1000) : el} {...args} rounded />
     <img src={src} alt="" />
-    <QRCode ref={ref} rounded value="just another value" />
   </div>
 }
 ```

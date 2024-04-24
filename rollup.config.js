@@ -27,19 +27,5 @@ export default {
     commonjs(),
     typescript({ useTsconfigDeclarationDir: true }),
     postcss(),
-    copy({
-      targets: [
-        {
-          src: "src/variables.scss",
-          dest: "build",
-          rename: "variables.scss"
-        },
-        {
-          src: "src/typography.scss",
-          dest: "build",
-          rename: "typography.scss"
-        }
-      ]
-    })
   ]
 };

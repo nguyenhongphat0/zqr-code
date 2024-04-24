@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import QRCode from "./QRCode";
+import {QRCode}  from ".";
 import { QRCodeInstance } from "./QRCodeProps.types";
 
 export default {
   title: "QRCode",
   component: QRCode,
   args: {
-    value: 'https://zalo.me/4318657068771012646',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/800px-Figma-logo.svg.png',
+    value: 'https://zalo.me/s/1604978607252151272/',
+    size: 128
   },
 };
 
@@ -17,42 +17,12 @@ export const Default = Template.bind({});
 Default.args = {
 };
 
-export const Rounded = Template.bind({});
-Rounded.args = {
-  rounded: true
-};
-
 export const Base64 = (args) => {
   const ref = useRef<QRCodeInstance>()
   const [src, setSrc] = useState('');
-  useEffect(() => {
-    ref.current.getBase64().then(base64 => setSrc(base64))
-  }, [])
 
   return <div>
+    <QRCode ref={el => el ? setTimeout(() => setSrc(el.getBase64()), 1000) : el} {...args} rounded />
     <img src={src} alt="" />
-    <QRCode ref={ref} {...args} rounded />
   </div>
-}
-
-export const ExportImage = () => {
-  const [src, setSrc] = useState('');
-
-  const ref = useRef<QRCodeInstance>();
-  useEffect(() => {
-    ref.current.getBase64('png').then(base64 => setSrc(base64))
-  }, []);
-
-  return <div>
-    <img src={src} alt="" />
-    <QRCode ref={ref} rounded value="just another value" />
-  </div>
-}
-
-export const UseRef = (args) => {
-  const ref = useRef<QRCodeInstance>()
-  return <>
-    <button onClick={() => console.log(ref.current)}>Download</button>
-    <QRCode {...args} rounded ref={ref} />
-  </>
 }
